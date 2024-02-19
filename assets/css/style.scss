@@ -2,22 +2,23 @@
 ---
 
 @import "minima/skins/{{ site.minima.skin | default: 'classic' }}",
-  "minima/initialize";
+	"minima/initialize";
 
 body {
-  font-family: "Bitter", serif;
-  font-size: larger;
-  font-weight: 400;
+	font-family: "Bitter", serif;
+	font-size: larger;
+	font-weight: 400;
 }
 
 code {
-  font-family: "Courier New", Courier, monospace;
-  font-size: smaller;
+	font-family: "Courier New", Courier, monospace;
+	font-size: smaller;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-weight: 600;
+	font-weight: 600;
+	text-transform: capitalize;
 }
