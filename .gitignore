@@ -1,33 +1,5 @@
-# Site output
-_site/
-
-# Dependency directories
-.bundle/
-.sass-cache/
-.jekyll-cache/
+_site
+.sass-cache
+.jekyll-cache
 .jekyll-metadata
-node_modules/
-
-# Environment variables
-.env
-
-# Local Jekyll configuration
-.jekyll-cache/
-.jekyll-metadata
-
-# macOS files
-.DS_Store
-
-# Text editor/IDE files
-.vscode/
-.idea/
-*.sublime-workspace
-*.sublime-project
-
-# Thumbnails
-Thumbs.db
-
-# Backup files
-*.bak
-*.tmp
-*.swp
+vendor
