@@ -12,11 +12,19 @@ PartiQL extends SQL with additional syntax to handle nested and semi-structured 
 
 ## Did we need another SQL dialect?
 
-The need for a new SQL dialect like PartiQL arose from the evolving complexity of data management, particularly the challenges associated with querying and integrating data across diverse formats and storage systems. Traditional SQL languages were primarily designed for relational data models and struggled to efficiently handle nested, semi-structured, or schema-less data common in modern applications. Organizations required a solution that could seamlessly interact with traditional relational data and current data types without needing multiple query languages or complex data transformation processes. PartiQL addresses these challenges by extending SQL to support these varied data formats, offering a unified query language that maintains SQL compatibility while introducing the flexibility to work with modern data architectures. This development reflects the need to simplify data management practices, enhance interoperability among different data systems, and leverage existing SQL knowledge in more complex and varied data environments.
+The PartiQL specification [5] is based on "SQL++: A SQL Dialect for Semi-Structured Data" [2]. The paper outlines compelling reasons for developing PartiQL, a language closely related to the SQL++ project. It highlights the limitations of traditional SQL in dealing with semi-structured data, such as JSON, commonly found in modern applications and NoSQL databases. SQL++, and by extension PartiQL, addresses these challenges by extending SQL to handle both structured and semi-structured data seamlessly. This approach ensures compatibility with existing SQL knowledge while enabling queries on data without a fixed schema, bridging the gap between relational and NoSQL databases. The development of PartiQL reflects a strategic response to the evolving data management landscape, providing a comprehensive tool for efficiently querying and integrating diverse data formats.
 
 ## Tell me more
 
-The document "SQL++: A SQL Dialect for Semi-Structured Data" [2] outlines compelling reasons for developing PartiQL, a language closely related to the SQL++ project. It highlights the limitations of traditional SQL in dealing with semi-structured data, such as JSON, commonly found in modern applications and NoSQL databases. SQL++, and by extension PartiQL, addresses these challenges by extending SQL to handle both structured and semi-structured data seamlessly. This approach ensures compatibility with existing SQL knowledge while enabling queries on data without a fixed schema, bridging the gap between relational and NoSQL databases. The development of PartiQL reflects a strategic response to the evolving data management landscape, providing a comprehensive tool for efficiently querying and integrating diverse data formats.
+The need for a new SQL dialect like PartiQL arose from the evolving complexity of data management, particularly the challenges associated with querying and integrating data across diverse formats and storage systems. Traditional SQL languages were primarily designed for relational data models and struggled to efficiently handle nested, semi-structured, or schema-less data common in modern applications. Organizations required a solution that could seamlessly interact with traditional relational data and current data types without needing multiple query languages or complex data transformation processes. PartiQL addresses these challenges by extending SQL to support these varied data formats, offering a unified query language that maintains SQL compatibility while introducing the flexibility to work with modern data architectures. This development reflects the need to simplify data management practices, enhance interoperability among different data systems, and leverage existing SQL knowledge in more complex and varied data environments.
+
+The following is a simple SFW (Select-From-Where) PartiQL query:
+
+```
+SELECT e.id, e.name AS employeeName, e.title AS title
+FROM hr.employees e
+WHERE e.title = 'Dev Mgr'
+```
 
 ## How do I get started?
 
