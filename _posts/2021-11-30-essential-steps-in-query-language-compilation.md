@@ -38,7 +38,7 @@ For PartiQL, a query language that abstracts over the specifics of physical data
 2. Syntax Analysis (Parsing)
    - **Inputs:** Tokens.
    - **Outputs:** Parse tree or Abstract Syntax Tree (AST).
-   - **Dependencies:** Grammar rules defined by PartiQL.
+   - **Dependencies:** Grammar [1] rules defined by PartiQL.
 3. Semantic Analysis
    - **Inputs:** Parse tree or AST.
    - **Outputs:** Annotated AST, where annotations include type information and scope bindings.
@@ -73,3 +73,7 @@ The PartiQL compiler transforms human-readable queries into optimized, evaluatio
 Through this sophisticated compilation process, PartiQL empowers users to interact with data flexibly and efficiently, bridging the gap between complex data structures and actionable insights without being tethered to a single storage model or execution environment.
 
 In the following posts, we will unravel each topic in sufficient detail.
+
+## References
+
+1. [The Role of Grammar in PartiQL](https://sahays.github.io/database/2021/12/15/the-role-of-grammar-in-partiql.html)

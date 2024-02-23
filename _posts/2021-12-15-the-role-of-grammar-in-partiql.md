@@ -8,7 +8,7 @@ PartiQL relies on ANTLR (another tool for language recognition) to define its gr
 
 This foundation in ANTLR facilitates the development of robust and flexible query processing capabilities, allowing for the dynamic evaluation of queries over structured, semi-structured, and unstructured data.
 
-Through grammar definitions, ANTLR plays a crucial role in the lexical analysis, syntax analysis, and semantic analysis stages of the PartiQL compilation process, transforming queries into an abstract syntax tree (AST) that represents the hierarchical structure of the query.
+Through grammar definitions, ANTLR plays a crucial role in the lexical analysis, syntax analysis, and semantic analysis stages of the PartiQL compilation process [1], transforming queries into an abstract syntax tree (AST) that represents the hierarchical structure of the query.
 
 ## Grammar Key Concepts
 
@@ -131,3 +131,7 @@ This Java code snippet demonstrates how to parse a PartiQL query and print its p
 Grammar is essential for defining the syntax of programming and query languages, enabling the accurate parsing and interpretation of code. It underpins the development of compilers and interpreters, ensuring code is syntactically correct and semantically meaningful. Formal notations like Context-Free Grammar (CFG), Backus-Naur Form (BNF), and Extended Backus-Naur Form (EBNF) provide a structured framework for specifying language rules. Tools such as ANTLR utilize these grammars to automate the creation of language processors, streamlining the implementation of languages and allowing developers to focus on advanced features and optimizations.
 
 Understanding grammar opens avenues to advanced computer science topics like language design, compiler construction, and natural language processing (NLP). It empowers newcomers and experts to explore complex language features, optimize language processing, and create new languages. As such, delving into grammar and its applications is a foundational step for anyone looking to advance in language technology.
+
+## References
+
+1. [Essential Steps in Query Language Compilation](https://sahays.github.io/database/2021/11/30/essential-steps-in-query-language-compilation.html)
