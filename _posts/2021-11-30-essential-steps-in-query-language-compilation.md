@@ -6,9 +6,9 @@ categories: database
 
 Compilers translate high-level programming languages into machine code, allowing computers to execute written programs. They perform this translation through several stages, including lexical analysis, syntax analysis, semantic analysis, optimization, and code generation.
 
-A compiler aims to bridge the gap between human-readable code and machine-executable instructions, optimizing the code for performance and efficiency along the way. For example, a compiler transforms a C program that calculates the factorial of a number into a sequence of assembly instructions that the computer's processor can execute directly, ensuring the program runs as intended on the hardware.
+For PartiQL, compilers transform high-level query statements into a logical plan ready for evaluation, enabling the processing of queries across various data sources without the need for direct execution on a specific database system. This transformation process unfolds through several stages, including lexical analysis, syntax analysis, semantic analysis, query optimization, and logical plan generation.
 
-The same compilation concepts and steps apply to develop a query language, e.g., PartiQL or Trino.
+In this context, the compiler aims to bridge the gap between human-readable queries and logical algebra, optimizing the query for logical efficiency and effectiveness. For instance, a PartiQL compiler takes a query that selects records based on specific criteria from a dataset and converts it into an optimized logical plan. This plan is then ready for evaluation across multiple data formats and storage systems, ensuring engine-independent querying without direct reliance on the underlying physical storage mechanisms.
 
 The compilation and evaluation steps for queries in languages like PartiQL are crucial for processing and interpreting user requests across various data environments. These steps transform user queries from a human-readable format into a logical plan that systems can evaluate to produce results. The necessity for these steps arises from several fundamental requirements:
 
@@ -25,60 +25,51 @@ These methodologies are rooted in computer science, specifically in compilers, d
 - **Query Transformation and Optimization** utilize algorithms to rewrite `SELECT name FROM employees WHERE department = 'HR' OR age < 25` for efficiency, perhaps by applying an index on `department` or `age` if available.
 - **Logical Plan Generation and Evaluation** involve creating data flow plans for `SELECT COUNT(*) FROM orders GROUP BY customerId`, using data structures like hash tables for aggregation.
 
-![Compiler steps](/assets/images/compiler-steps.png)
-
-This diagram starts with the initial state, proceeding through the stages of lexical analysis (tokenizing the input code), syntax analysis (parsing the tokens into a parse tree), semantic analysis (checking for semantic correctness), optimization (improving the code for better performance), and finally code generation (producing the machine code). Each stage is a critical step in the compilation process, transforming high-level code into optimized machine code executable by a computer.
-
 ## Can you summarize inputs, outputs, and dependencies for each step?
 
-The compilation process is a sophisticated sequence of steps that transforms high-level programming language code into machine-executable instructions. This process is essential for bridging the gap between human-readable code and binary computer-understood instructions.
+![Compiler steps](/assets/images/compiler-steps.png)
 
-Each step in the compiler pipeline—lexical analysis, syntax analysis, semantic analysis, optimization, and code generation—serves a specific purpose, methodically converting and refining the code to improve its efficiency and ensure its correctness. These steps rely on various dependencies, such as lexical rules, grammar, symbol tables, type systems, and knowledge of the target machine architecture, to process and optimize the code for execution accurately.
-
-By understanding the inputs, outputs, and dependencies involved in each stage, developers and students can gain insights into the complexities of software compilation and the critical role compilers play in software development and execution.
+For PartiQL, a query language that abstracts over the specifics of physical data storage and execution layers, the compilation process focuses on transforming a high-level query into a form that's ready for evaluation, rather than execution on a specific database system. The steps involved in compiling a PartiQL query, with their inputs, outputs, and dependencies, would be adjusted accordingly:
 
 1. Lexical Analysis
-
-- Inputs: Source code as a string of characters.
-- Outputs: Tokens (e.g., keywords, symbols, identifiers).
-- Dependencies: Lexical rules defined by the programming language's syntax.
-
+   - Inputs: Query text.
+   - Outputs: Tokens (such as keywords, identifiers, literals).
+   - Dependencies: Lexical rules specific to PartiQL.
 2. Syntax Analysis (Parsing)
-
-- Inputs: Tokens from lexical analysis.
-- Outputs: Parse tree or Abstract Syntax Tree (AST).
-- Dependencies: Grammar rules of the programming language.
-
+   - Inputs: Tokens.
+   - Outputs: Parse tree or Abstract Syntax Tree (AST).
+   - Dependencies: Grammar rules defined by PartiQL.
 3. Semantic Analysis
+   - Inputs: Parse tree or AST.
+   - Outputs: Annotated AST, where annotations include type information and scope bindings.
+   - Dependencies:
+     - Schema information (if applicable): Validates table names, column names, and functions against a logical schema.
+     - Type system: Ensures operations are semantically correct, given the types of operands.
+4. Query Transformation/Optimization
+   - Inputs: Annotated AST.
+   - Outputs: Optimized logical plan.
+   - Dependencies:
+     - Optimization rules: Applied to transform the query into a more efficient form without a specific focus on physical execution strategies.
+     - Logical data model: Considerations of how data is logically organized in PartiQL's abstract environment.
+5. Logical Plan Generation
+   - Inputs: Optimized logical plan.
+   - Outputs: Evaluation-ready logical plan.
+   - Dependencies:
+     - Data access patterns: General patterns for how data can be retrieved or manipulated logically.
+     - Environment constraints: Any limitations or features of the evaluation environment that might influence plan formulation.
+6. Evaluation
+   - Inputs: Evaluation-ready logical plan.
+   - Outputs: Query results.
+   - Dependencies:
+     - Evaluation engine: The component that interprets the logical plan and computes results based on the logical data model.
+     - Logical data sources: Abstract representations of data sources that PartiQL queries can operate over.
 
-- Inputs: Parse tree or AST.
-- Outputs: Annotated AST with type information and scope information.
-- Dependencies:
-  - Symbol table: Stores information about variables, types, and scopes.
-  - Type system: Defines rules for type checking and type inference.
-
-4. Optimization
-
-- Inputs: Annotated AST or Intermediate Representation (IR).
-- Outputs: Optimized IR.
-- Dependencies:
-  - Optimization algorithms: Techniques to improve code efficiency without altering behavior.
-  - Target machine characteristics: Information about the target architecture that can influence optimization strategies.
-
-5. Code Generation
-
-- Inputs: Optimized IR.
-- Outputs: Machine code or bytecode, depending on the target platform.
-- Dependencies:
-  - Target machine architecture: Defines the instruction set and capabilities of the target platform.
-  - Register allocation algorithms: Determine the efficient use of the CPU's registers for temporary storage.
-
-Each step in the compilation process transforms the input into a more refined or specialized form, bringing it closer to executable machine code. The dependencies at each stage provide the necessary context or rules guiding these transformations, ensuring the output is correct, efficient, and tailored to the target execution environment.
+Given PartiQL's design to operate independently of a physical storage or execution layer, its compilation process emphasizes transforming queries into logical plans optimized for evaluation. This approach allows PartiQL to serve as a bridge for querying data across different formats and storage systems with a unified syntax, ensuring flexibility and broad applicability in data querying and manipulation.
 
 ## Conclusion
 
-Compilers combine the art and science of computer programming, employing a structured pipeline that includes lexical analysis, syntax analysis, semantic analysis, optimization, and code generation. At each stage, specific dependencies—such as grammar, symbol tables, type systems, intermediate representations, and knowledge of target machine architecture—play vital roles in ensuring the compiled program's accuracy, efficiency, and effectiveness. These components are not just technicalities but foundational to how we communicate with and leverage computing resources.
+The PartiQL compiler transforms human-readable queries into optimized, evaluation-ready logical plans. This process, encompassing lexical analysis, syntax analysis, semantic analysis, query optimization, and logical plan generation, ensures efficient and effective query evaluation across diverse data sources. Unlike traditional compilers that target machine code generation for direct execution on hardware, the PartiQL compiler focuses on abstracting queries from the specifics of physical data storage.
 
-Understanding the compiler pipeline and its underlying principles illuminates the complexities of software development and the ingenuity of computer science. It highlights the importance of compilers in the broader context of programming, enabling developers to write code that can run across various platforms and devices, optimizing for performance and resource use. As we continue to push the boundaries of technology, the evolution of compilers and their methodologies will remain at the heart of making complex computing accessible, efficient, and adaptable for future generations of programmers and engineers.
+Through this sophisticated compilation process, PartiQL empowers users to interact with data flexibly and efficiently, bridging the gap between complex data structures and actionable insights without being tethered to a single storage model or execution environment.
 
 In the following posts, we will unravel each topic in sufficient detail.
