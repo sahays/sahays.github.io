@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Role of Grammar in Query Languages"
+title: "The Role of Grammar in PartiQL"
 categories: database
 ---
 
