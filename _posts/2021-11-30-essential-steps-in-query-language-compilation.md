@@ -29,20 +29,20 @@ These methodologies are rooted in computer science, specifically in compilers, d
 
 ![Compiler steps](/assets/images/compiler-steps.png)
 
-For PartiQL, a query language that abstracts over the specifics of physical data storage and execution layers, the compilation process focuses on transforming a high-level query into a form that's ready for evaluation, rather than execution on a specific database system. The steps involved in compiling a PartiQL query, with their inputs, outputs, and dependencies as shown the above diagram are:
+For PartiQL, a query language that abstracts over the specifics of physical data storage and execution layers, the compilation process focuses on transforming a high-level query into a form that's ready for evaluation, rather than execution on a specific database system. The steps involved in compiling a PartiQL query, with their inputs, outputs, and dependencies as shown in the above diagram are:
 
 1. Lexical Analysis
-   - Inputs: Query text.
-   - Outputs: Tokens (such as keywords, identifiers, literals).
-   - Dependencies: Lexical rules specific to PartiQL.
+   - **Inputs:** Query text.
+   - **Outputs:** Tokens (such as keywords, identifiers, literals).
+   - **Dependencies:** Lexical rules specific to PartiQL.
 2. Syntax Analysis (Parsing)
-   - Inputs: Tokens.
-   - Outputs: Parse tree or Abstract Syntax Tree (AST).
-   - Dependencies: Grammar rules defined by PartiQL.
+   - **Inputs:** Tokens.
+   - **Outputs:** Parse tree or Abstract Syntax Tree (AST).
+   - **Dependencies:** Grammar rules defined by PartiQL.
 3. Semantic Analysis
-   - Inputs: Parse tree or AST.
-   - Outputs: Annotated AST, where annotations include type information and scope bindings.
-   - Dependencies:
+   - **Inputs:** Parse tree or AST.
+   - **Outputs:** Annotated AST, where annotations include type information and scope bindings.
+   - **Dependencies:**
      - Schema information (if applicable): Validates table names, column names, and functions against a logical schema.
      - Type system: Ensures operations are semantically correct, given the types of operands.
 4. Query Transformation/Optimization
@@ -52,15 +52,15 @@ For PartiQL, a query language that abstracts over the specifics of physical data
      - Optimization rules: Applied to transform the query into a more efficient form without a specific focus on physical execution strategies.
      - Logical data model: Considerations of how data is logically organized in PartiQL's abstract environment.
 5. Logical Plan Generation
-   - Inputs: Optimized logical plan.
-   - Outputs: Evaluation-ready logical plan.
-   - Dependencies:
+   - **Inputs:** Optimized logical plan.
+   - **Outputs:** Evaluation-ready logical plan.
+   - **Dependencies:**
      - Data access patterns: General patterns for how data can be retrieved or manipulated logically.
      - Environment constraints: Any limitations or features of the evaluation environment that might influence plan formulation.
 6. Evaluation
-   - Inputs: Evaluation-ready logical plan.
-   - Outputs: Query results.
-   - Dependencies:
+   - **Inputs:** Evaluation-ready logical plan.
+   - **Outputs:** Query results.
+   - **Dependencies:**
      - Evaluation engine: The component that interprets the logical plan and computes results based on the logical data model.
      - Logical data sources: Abstract representations of data sources that PartiQL queries can operate over.
 
