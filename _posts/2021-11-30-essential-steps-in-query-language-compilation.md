@@ -6,9 +6,9 @@ categories: database
 
 Compilers translate high-level programming languages into machine code, allowing computers to execute written programs. They perform this translation through several stages, including lexical analysis, syntax analysis, semantic analysis, optimization, and code generation.
 
-The PartiQL compiler transform high-level query statements into a logical plan ready for evaluation, enabling the processing of queries across various data sources without the need for direct execution on a specific database system. This transformation process unfolds through several stages, including lexical analysis, syntax analysis, semantic analysis, query optimization, and logical plan generation.
+The PartiQL query language [2] compiler transform high-level query statements into a logical plan ready for evaluation, enabling the processing of queries across various data sources without the need for direct execution on a specific database system. This transformation process unfolds through several stages, including lexical analysis, syntax analysis, semantic analysis, query optimization, and logical plan generation.
 
-In this context, the compiler aims to bridge the gap between human-readable queries and logical plan, optimizing the query for logical efficiency and effectiveness. For instance, a PartiQL compiler takes a query that selects records based on specific criteria from a dataset and converts it into an optimized logical plan. This plan is then ready for evaluation across multiple data formats and storage systems, ensuring engine-independent querying without direct reliance on the underlying physical storage mechanisms.
+In PartiQL's context, the compiler aims to bridge the gap between human-readable queries and logical plan, optimizing the query for logical efficiency and effectiveness. For instance, a PartiQL compiler takes a query that selects records based on specific criteria from a dataset and converts it into an optimized logical plan. This plan is then ready for evaluation across multiple data formats and storage systems, ensuring engine-independent querying without direct reliance on the underlying physical storage mechanisms.
 
 The compilation and evaluation steps for queries in languages like PartiQL are crucial for processing and interpreting user requests across various data environments. These steps transform user queries from a human-readable format into a logical plan that systems can evaluate to produce results. The necessity for these steps arises from several fundamental requirements:
 
@@ -77,3 +77,4 @@ In the following posts, we will unravel each topic in sufficient detail.
 ## References
 
 1. [The Role of Grammar in PartiQL](https://sahays.github.io/database/2021/12/15/the-role-of-grammar-in-partiql.html)
+2. [What is PartiQL?](https://sahays.github.io/database/2021/09/30/what-is-partiql.html)

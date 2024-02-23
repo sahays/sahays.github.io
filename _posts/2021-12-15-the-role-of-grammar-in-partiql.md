@@ -4,11 +4,11 @@ title: "The Role of Grammar in PartiQL"
 categories: database
 ---
 
-PartiQL relies on ANTLR (another tool for language recognition) to define its grammar. ANTLR is a powerful tool for generating parsers, lexers, and tree parsers from grammatical descriptions containing actions in various target languages. It enables the precise specification of syntax rules that PartiQL uses to interpret and analyze queries. By leveraging ANTLR, PartiQL can efficiently parse complex queries, ensuring they adhere to its syntax rules and semantics.
+Grammar is the cornerstone for constructing and interpreting programming and query languages, guiding the structure and organization of code to ensure both syntactical correctness and semantic clarity. It outlines the rules for combining tokens into meaningful expressions and commands, facilitating the development of compilers and interpreters that can understand and execute written code accurately. Grammar in language design aims to provide a clear, unambiguous framework that defines how language elements interact and are structured, making it possible to parse and analyze complex instructions effectively.
 
-This foundation in ANTLR facilitates the development of robust and flexible query processing capabilities, allowing for the dynamic evaluation of queries over structured, semi-structured, and unstructured data.
+ANTLR (ANother Tool for Language Recognition) emerges as a pivotal tool in this context, especially for languages like PartiQL. It specializes in generating parsers, lexers, and tree parsers from detailed grammatical descriptions, allowing for the precise definition and enforcement of syntax rules. This capability is crucial for PartiQL, ensuring consistent interpretation of queries according to the defined grammar and maintaining the language's integrity across varied data sources.
 
-Through grammar definitions, ANTLR plays a crucial role in the lexical analysis, syntax analysis, and semantic analysis stages of the PartiQL compilation process [1], transforming queries into an abstract syntax tree (AST) that represents the hierarchical structure of the query.
+By utilizing ANTLR, PartiQL leverages a robust framework for parsing complex queries, aligning them with the language's syntax rules and semantics. This integration enables PartiQL to offer flexible and powerful query processing capabilities, capable of handling data across structured, semi-structured, and unstructured formats. ANTLR's role extends through the critical phases of lexical analysis, syntax analysis, and semantic analysis in the PartiQL compilation process, transforming queries into an Abstract Syntax Tree (AST). The AST encapsulates the hierarchical structure of the query, underlying the systematic approach PartiQL adopts to interpret and execute queries efficiently, thanks to the foundational support provided by ANTLR's grammar processing capabilities.
 
 ## Grammar Key Concepts
 
@@ -22,7 +22,7 @@ ANTLR utilizes a notation closely aligned with EBNF for its grammar definitions.
 
 In summary, while CFG lays the theoretical groundwork, BNF and EBNF provide the practical notation for expressing these grammars. ANTLR extends this further with a powerful syntax tailored for language processing applications. This progression from CFG to ANTLR's grammar notation illustrates the evolution of language description methods from theoretical frameworks to practical tools in software development.
 
-A simple CFG for a fragment of the PartiQL syntax might include rules for parsing a basic SELECT statement:
+A simple BNF for a fragment of the PartiQL syntax might include rules for parsing a basic SELECT statement:
 
 ```sql
 <Statement> ::= <SelectStatement>
@@ -50,7 +50,7 @@ An AST is a tree representation of the abstract syntactic structure of code or q
 
 Given the query `SELECT name, age FROM users WHERE age == 30`, an AST might look like:
 
-```sql
+```java
 SelectStatement
 |-- Columns
 |   |-- Column: name
@@ -115,16 +115,21 @@ This rule allows parsing queries with an optional `JOIN` clause.
 Using ANTLR, the PartiQL grammar can be defined in a .g4 file (ANTLR grammar file), which specifies all the lexical and syntactic rules for the language. ANTLR then generates the necessary lexer and parser in the target language (such as Kotlin), which can parse PartiQL queries and produce the corresponding ASTs for further processing. To use the ANTLR-generated lexer and parser in a Java project, you would first compile the `.g4` grammar file, then use the generated classes to parse a PartiQL query:
 
 ```java
-ANTLRInputStream input = new ANTLRInputStream("SELECT name FROM users WHERE age == 30");
-PartiQLLexer lexer = new PartiQLLexer(input);
-CommonTokenStream tokens = new CommonTokenStream(lexer);
-PartiQLParser parser = new PartiQLParser(tokens);
-ParseTree tree = parser.selectStatement(); // Parse the query
+import org.antlr.v4.runtime.*
+import org.antlr.v4.runtime.tree.*
 
-System.out.println(tree.toStringTree(parser)); // Print the parse tree
+fun main() {
+    val input = CharStreams.fromString("SELECT name FROM users WHERE age == 30")
+    val lexer = PartiQLLexer(input)
+    val tokens = CommonTokenStream(lexer)
+    val parser = PartiQLParser(tokens)
+    val tree: ParseTree = parser.selectStatement() // Parse the query
+
+    println(tree.toStringTree(parser)) // Print the parse tree
+}
 ```
 
-This Java code snippet demonstrates how to parse a PartiQL query and print its parse tree, using ANTLR-generated `PartiQLLexer` and `PartiQLParser` classes.
+This Kotlin code snippet demonstrates how to parse a PartiQL query and print its parse tree, using ANTLR-generated `PartiQLLexer` and `PartiQLParser` classes.
 
 ## Conclusion
 
