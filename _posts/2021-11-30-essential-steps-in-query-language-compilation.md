@@ -29,7 +29,7 @@ These methodologies are rooted in computer science, specifically in compilers, d
 
 ![Compiler steps](/assets/images/compiler-steps.png)
 
-For PartiQL, a query language that abstracts over the specifics of physical data storage and execution layers, the compilation process focuses on transforming a high-level query into a form that's ready for evaluation, rather than execution on a specific database system. The steps involved in compiling a PartiQL query, with their inputs, outputs, and dependencies, would be adjusted accordingly:
+For PartiQL, a query language that abstracts over the specifics of physical data storage and execution layers, the compilation process focuses on transforming a high-level query into a form that's ready for evaluation, rather than execution on a specific database system. The steps involved in compiling a PartiQL query, with their inputs, outputs, and dependencies as shown the above diagram are:
 
 1. Lexical Analysis
    - Inputs: Query text.
