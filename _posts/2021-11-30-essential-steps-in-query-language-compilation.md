@@ -25,7 +25,7 @@ These methodologies are rooted in computer science, specifically in compilers, d
 - **Query Transformation and Optimization** utilize algorithms to rewrite `SELECT name FROM employees WHERE department = 'HR' OR age < 25` for efficiency, perhaps by applying an index on `department` or `age` if available.
 - **Logical Plan Generation and Evaluation** involve creating data flow plans for `SELECT COUNT(*) FROM orders GROUP BY customerId`, using data structures like hash tables for aggregation.
 
-## Can you summarize inputs, outputs, and dependencies for each step?
+## Inputs, outputs, and dependencies
 
 ![Compiler steps](/assets/images/compiler-steps.png)
 
