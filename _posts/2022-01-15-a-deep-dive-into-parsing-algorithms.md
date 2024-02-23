@@ -6,7 +6,7 @@ categories: database
 
 In the compilation process of programming languages, lexical and syntax analysis are foundational steps that transform raw source code into structured representations, facilitating further analysis and translation. Lexical analysis, the first phase, employs deterministic finite automata and regular expressions to segment the input text into tokens--atomic units of meaning within the code.
 
-Then, syntax analysis builds upon the tokens identified by the lexer to construct parse trees and abstract syntax trees (ASTs) using context-free grammar and various parsing techniques. These trees represent the hierarchical syntactic structure of the program, adhering to the language's grammar rules. Together, lexical and syntax analysis prepare the groundwork for understanding and manipulating source code in subsequent phases of the compilation or interpretation process.
+Then, syntax analysis builds upon the tokens identified by the lexer to construct parse trees and abstract syntax trees (ASTs) using context-free grammar [1] and various parsing techniques. These trees represent the hierarchical syntactic structure of the program, adhering to the language's grammar rules. Together, lexical and syntax analysis prepare the groundwork for understanding and manipulating source code in subsequent phases of the compilation or interpretation process.
 
 ## What is a parser?
 
@@ -14,12 +14,15 @@ A parser critically analyzes the syntactic structure of a given input, typically
 
 Parsing employs various algorithms and strategies to construct the tree representation efficiently and accurately. Parsing techniques fall into two primary categories: top-down parsing and bottom-up parsing.
 
-- **Top-Down Parsing:**
-  - Recursive Descent Parsing: It is a straightforward method where the parser recursively calls functions representing non-terminals in the grammar. It's hand-coded but may require backtracking for some grammars.
-  - Predictive Parsing (LL Parsing): An extension of recursive descent that eliminates backtracking by using lookahead tokens to make parsing decisions. LL parsers, where the first L stands for reading the input from left to right and the second L for producing a leftmost derivation, rely on a parsing table to decide which rule to apply. ANTLR generates LL(\*) parsers, where \* denotes an arbitrary number of lookahead tokens.
-- **Bottom-Up Parsing:**
-  - Shift-Reduce Parsing: This method builds the parse tree from the leaves up, starting with the input tokens and working towards the grammar's start symbol. Actions involve shifting (moving tokens onto a stack for further processing) and reducing (applying grammar rules to reduce sequences of tokens and non-terminals to higher-level non-terminals).
-  - LR Parsing: It is a more complex form of shift-reduce parsing capable of handling a broader range of grammars, including all deterministic context-free grammars. LR parsers read the input from left to right and construct a rightmost derivation in reverse. Variants like SLR, LALR, and Canonical LR differ in handling the lookahead tokens and constructing their parsing tables.
+### Top-Down Parsing
+
+- **Recursive Descent Parsing:** It is a straightforward method where the parser recursively calls functions representing non-terminals in the grammar. It's hand-coded but may require backtracking for some grammars.
+- **Predictive Parsing (LL Parsing):** An extension of recursive descent that eliminates backtracking by using lookahead tokens to make parsing decisions. LL parsers, where the first L stands for reading the input from left to right and the second L for producing a leftmost derivation, rely on a parsing table to decide which rule to apply. ANTLR generates LL(\*) parsers, where \* denotes an arbitrary number of lookahead tokens.
+
+### Bottom-Up Parsing
+
+- **Shift-Reduce Parsing:** This method builds the parse tree from the leaves up, starting with the input tokens and working towards the grammar's start symbol. Actions involve shifting (moving tokens onto a stack for further processing) and reducing (applying grammar rules to reduce sequences of tokens and non-terminals to higher-level non-terminals).
+- **LR Parsing:** It is a more complex form of shift-reduce parsing capable of handling a broader range of grammars, including all deterministic context-free grammars. LR parsers read the input from left to right and construct a rightmost derivation in reverse. Variants like SLR, LALR, and Canonical LR differ in handling the lookahead tokens and constructing their parsing tables.
 
 The choice of parsing technique depends on the specific requirements of the language and compiler, including factors like the complexity of the grammar, the need to handle ambiguities and performance considerations. Parsing ensures that the source code adheres to the syntactic rules of the language but also lays the groundwork for all subsequent compilation phases, making it a pivotal component of the compiler architecture.
 
@@ -379,3 +382,145 @@ else:
 **Limited Intuitiveness:** The bottom-up nature of shift-reduce parsing might not align intuitively with the way some programmers conceptualize grammatical structures, potentially making parser logic harder to follow and debug.
 
 In summary, shift-reduce parsing excels in its ability to parse a broad range of grammars efficiently and directly construct parse trees, making it a powerful tool for compiler construction. However, the complexity of implementing such parsers and the challenges associated with grammar preparation and error recovery necessitates careful consideration. Balancing these pros and cons is crucial when choosing a parsing strategy for a specific language or compiler project.
+
+## LR Parsing
+
+LR parsing, short for Left-to-right, Rightmost derivation parsing, is a bottom-up approach to syntax analysis used in compiler design. It's capable of parsing a broader class of grammars more efficiently than simple shift-reduce parsers. LR parsers work by reading the input from left to right and constructing a rightmost derivation in reverse. The "LR" designation indicates the direction of input reading (L) and the type of derivation (R).
+
+### Types of LR Parsers
+
+There are several types of LR parsers, including:
+
+- SLR (Simple LR): Uses a simplified set of parsing table construction rules.
+- LALR (Lookahead LR): Combines the states with the same items except for their lookahead symbols, reducing the size of the parsing table without losing the ability to parse many grammars.
+- CLR (Canonical LR): Provides the most potent LR parsing, using an exhaustive set of items for constructing the parsing table, which can handle all LR(k) grammars for any k.
+
+### LR Parsing Example
+
+Given a grammar for simple arithmetic expressions:
+
+```
+E -> E + T | T
+T -> T * F | F
+F -> ( E ) | id
+```
+
+An LR parser would construct a set of states representing the possible configurations of the "stack" as it reads the input. Each state corresponds to a set of items, essentially the grammar rules annotated with a position marker indicating how much of the rule is seen.
+
+**Constructing the LR Parsing Table**
+The construction of the LR parsing table involves two main components:
+
+- Action Table: Determines whether to shift, reduce, accept, or throw an error based on the current state and lookahead token.
+- Goto Table: Used to decide the next state when a reduction happens.
+
+**LR Parsing Process**
+
+- Initialization: Start with the initial state on the stack.
+- Shift: On reading an input symbol, move to a new state by shifting the symbol onto the stack.
+- Reduce: If the entire right side of a production is on top of the stack, pop it off and replace it with the left side's non-terminal, transitioning to a new state based on the goto table.
+- Accept: If the stack eventually reduces to the grammar's start symbol and the input is fully consumed, the input is accepted as belonging to the language generated by the grammar.
+
+### Example Code for a Simplified LR Parser
+
+```python
+class LRParser:
+    def __init__(self, action_table, goto_table, input):
+        self.action_table = action_table
+        self.goto_table = goto_table
+        self.stack = [0]  # Initial state
+        self.input = input + ['$']  # End marker
+        self.pointer = 0  # Input pointer
+
+    def parse(self):
+        while True:
+            state = self.stack[-1]
+            symbol = self.input[self.pointer]
+            action = self.action_table[state][symbol]
+
+            if action.startswith('s'):  # Shift
+                self.stack.append(symbol)
+                self.stack.append(int(action[1:]))  # Go to state after 's'
+                self.pointer += 1
+            elif action.startswith('r'):  # Reduce
+                # Example: 'r2' means reduce by rule 2
+                rule_index = int(action[1:])  # Get rule index
+                # Assume rules is a list of tuples (lhs, rhs_length)
+                lhs, rhs_length = rules[rule_index]
+                for _ in range(2 * rhs_length):
+                    self.stack.pop()  # Pop RHS symbols and states
+                self.stack.append(lhs)
+                state = self.stack[-2]  # Current state
+                self.stack.append(self.goto_table[state][lhs])
+            elif action == 'acc':  # Accept
+                print("Input accepted")
+                break
+            else:  # Error
+                print("Syntax error")
+                break
+```
+
+This code outlines the basic structure of an LR parser. The `action_table` and `goto_table` contain the logic for shifting, reducing, and state transitions, and are specific to the grammar being parsed. Implementing a full LR parser requires constructing these tables from the grammar, which is a complex process typically done by parser generator tools like Yacc or Bison.
+
+## LR parsing Analysis
+
+LR parsing is a comprehensive method for syntax analysis, offering significant advantages for compiler design due to its ability to handle a wide range of grammars with precision and efficiency. However, it also presents specific challenges and limitations, primarily related to its implementation complexity. Below, we summarize the pros and cons of LR parsing, incorporating example code snippets to illustrate critical points.
+
+### Pros
+
+**Broad Coverage of Grammars:** LR parsers can analyze more complex grammars than LL parsers or simple shift-reduce parsers, making them suitable for a wide variety of programming languages.
+
+```python
+# Example showing broad grammar handling capability
+if action.startswith('r'):  # Reduce
+    # Handles complex reductions based on grammar rules
+
+```
+
+**Efficient and Deterministic Parsing:** With the parsing tables constructed, LR parsing is highly efficient and deterministic, avoiding the need for backtracking and enabling fast syntax analysis.
+
+```python
+# Efficient state transition
+self.stack.append(self.goto_table[state][lhs])
+```
+
+**Excellent Error Detection:** LR parsers detect errors as soon as they are encountered in the input stream, allowing for precise localization and reporting of syntax errors.
+
+```python
+else:  # Error
+    print("Syntax error")
+
+```
+
+**Automatic Parser Generation:** Tools like Yacc or Bison can automatically generate LR parsing tables from a grammar specification, facilitating the parser development process.
+
+### Cons
+
+**Complexity in Parser Construction:** Constructing the LR parsing tables manually is highly complex and error-prone. Automatic parser generators mitigate this but require understanding the nuances of how these tools work.
+
+```python
+# Indicative of the complexity in manual construction
+self.stack.append(int(action[1:]))  # Go to state after 's'
+
+```
+
+**Large Parsing Tables:** For complex grammars, the generated LR parsing tables can become very large, leading to increased memory consumption in the parser implementation.
+
+```python
+# Simplified view of accessing large parsing tables
+action = self.action_table[state][symbol]
+
+```
+
+**Grammar Restrictions:** Although LR parsers handle a wide range of grammars, the grammar must still be free of conflicts (such as shift-reduce conflicts) to be LR-parseable. Addressing these conflicts can require in-depth grammar analysis and modifications.
+
+**Learning Curve:** Understanding LR parsing, the construction of parsing tables, and the use of parser generators involves a steep learning curve, particularly for those new to compiler construction.
+
+In summary, LR parsing stands out for its ability to efficiently parse complex grammars with deterministic outcomes and precise error reporting. The approach is well-suited for industrial-strength compilers and interpreters. However, the complexity of setting up LR parsers, the potential for large parsing tables, and the need for conflict-free grammars pose challenges. Tools like Yacc and Bison are invaluable in automating much of the process, but leveraging these tools requires a solid understanding of LR parsing principles.
+
+## Conclusion
+
+Parsing techniques, ranging from straightforward recursive descent to sophisticated LR parsing, play a crucial role in compiler design and the analysis of programming languages. Recursive descent offers an intuitive approach with direct mapping to grammar, making it accessible but potentially inefficient for complex grammar due to its susceptibility to left recursion and backtracking issues. Predictive parsing, an evolution of recursive descent, eliminates backtracking through lookahead tokens and a parsing table, requiring grammars to be LL(1) for practical application. Shift-reduce parsing introduces a bottom-up approach, providing a more general method for constructing parse trees by dynamically recognizing and reducing patterns in the input. Among the most potent and comprehensive parsing strategies is LR parsing, which, through its various forms (SLR, LALR, CLR), supports a wide range of grammars with high efficiency and deterministic parsing, albeit at the cost of increased complexity in parser construction and potential for large parsing tables.
+
+## References
+
+1. [The Role of Grammar in PartiQL](https://sahays.github.io/database/2021/12/15/the-role-of-grammar-in-partiql.html)
