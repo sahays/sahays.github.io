@@ -46,9 +46,9 @@ For PartiQL, a query language that abstracts over the specifics of physical data
      - Schema information (if applicable): Validates table names, column names, and functions against a logical schema.
      - Type system: Ensures operations are semantically correct, given the types of operands.
 4. Query Transformation/Optimization
-   - Inputs: Annotated AST.
-   - Outputs: Optimized logical plan.
-   - Dependencies:
+   - **Inputs:** Annotated AST.
+   - **Outputs:** Optimized logical plan.
+   - **Dependencies:**
      - Optimization rules: Applied to transform the query into a more efficient form without a specific focus on physical execution strategies.
      - Logical data model: Considerations of how data is logically organized in PartiQL's abstract environment.
 5. Logical Plan Generation
