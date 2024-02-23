@@ -4,8 +4,6 @@ title: "What is SQL++?"
 categories: database
 ---
 
-## What is it, anyway?
-
 SQL++ is a dialect of SQL designed to enhance the language's capabilities in querying semi-structured data. It aims to bridge the gap between traditional SQL's strict, schema-based querying and the flexible, schema-less nature of modern data formats, such as JSON, commonly used in NoSQL databases. SQL++ extends SQL syntax and semantics to support nested and semi-structured data naturally, allowing for complex queries without sacrificing the expressiveness and familiarity of SQL. This extension makes SQL++ suitable for many data environments, from traditional relational databases to modern NoSQL systems, facilitating more effective data integration, analysis, and management.
 
 ## What problem does it solve?
