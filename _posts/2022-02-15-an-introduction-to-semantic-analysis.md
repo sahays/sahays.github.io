@@ -38,7 +38,7 @@ The effectiveness of semantic analysis in a PartiQL compiler significantly impac
 
 ## Techniques and Methods
 
-Semantic analysis in the context of PartiQL compilers involves several advanced techniques and methodologies to ensure queries are semantically correct and optimized for execution. Key among these techniques are type inference, scope resolution, and applying abstract syntax trees (ASTs) for efficient analysis.
+Semantic analysis in the context of PartiQL compilers involves several advanced techniques and methodologies to ensure queries are semantically correct and optimized for execution. Key among these techniques are type and schema inference, scope and symbol resolution, annotations, and applying abstract syntax trees (ASTs) for efficient analysis.
 
 **Type Inference:** PartiQL queries operate on data with varying types, including nested structures. Type inference is crucial for determining the data types of expressions dynamically. For instance, consider a query:
 
@@ -57,6 +57,10 @@ FROM Orders o
 
 In this nested query, scope resolution ensures the inner query's orderID correctly refers to o.orderID from the outer query, not another table or subquery with a similar field.
 
+**Schema Inference** allows the compiler to dynamically determine the structure and types of data, especially in semi-structured data sources. For example, in a PartiQL query like `SELECT * FROM Employees WHERE age > 30`, schema inference identifies age as a numeric field, enabling type-appropriate operations.
+
+**Symbol Resolution** ensures that all identifiers in a query, such as table names or column references, are correctly associated with their definitions. In the query `SELECT e.name FROM Employees e`, symbol resolution confirms that `e` is an alias for the Employees table and that name is a valid column in this table.
+
 **Abstract Syntax Trees (ASTs):** ASTs are a core part of semantic analysis, representing queries in a tree structure that mirrors their syntactic structure while enabling semantic checks. For each node in the AST, the compiler performs semantic checks such as type checking and scope resolution. This structure facilitates the traversal and manipulation of queries for optimization and analysis, making the semantic analysis phase more efficient and effective.
 
 ```
@@ -68,6 +72,8 @@ AST Example:
    WHERE
      age > 30
 ```
+
+**Annotations** enrich the abstract syntax tree (AST) with additional semantic information. For instance, after type checking, a node representing a variable might be annotated with its data type, such as integer or string. Similarly, a function call node might be annotated with information about the expected argument types and return type, ensuring correct usage within the query.
 
 Through these methodologies, semantic analysis ensures that PartiQL queries are not only syntactically correct but also semantically valid, laying the groundwork for subsequent optimization and code generation phases. These techniques enable the compiler to handle the complexity of PartiQL queries, ensuring accurate and efficient execution against diverse data sources.
 
