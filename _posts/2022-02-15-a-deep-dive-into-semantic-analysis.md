@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Deep Dive into Semantic Analysis"
-categories: database, compiler
+categories: database compiler
 ---
 
 Compiler engineering is essential for translating high-level programming languages into machine code, a process crucial for software execution. This discipline faces unique challenges with query languages like PartiQL, which extends SQL to handle structured, semi-structured, and nested data. PartiQL's flexibility makes it indispensable for modern data management, necessitating compilers that accurately interpret and execute its queries.
