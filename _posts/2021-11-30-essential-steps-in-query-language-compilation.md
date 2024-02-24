@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Essential Steps in Query Language Compilation"
-categories: database
+categories: compiler
 ---
 
 Compilers translate high-level programming languages into machine code, allowing computers to execute written programs. They perform this translation through several stages, including lexical analysis, syntax analysis, semantic analysis, optimization, and code generation.
@@ -66,7 +66,7 @@ For PartiQL, a query language that abstracts over the specifics of physical data
 
 Given PartiQL's design to operate independently of a physical storage or execution layer, its compilation process emphasizes transforming queries into logical plans optimized for evaluation. This approach allows PartiQL to serve as a bridge for querying data across different formats and storage systems with a unified syntax, ensuring flexibility and broad applicability in data querying and manipulation.
 
-## Conclusion
+## Summary
 
 The PartiQL compiler transforms human-readable queries into optimized, evaluation-ready logical plans. This process, encompassing lexical analysis, syntax analysis, semantic analysis, query optimization, and logical plan generation, ensures efficient and effective query evaluation across diverse data sources. Unlike traditional compilers that target machine code generation for direct execution on hardware, the PartiQL compiler focuses on abstracting queries from the specifics of physical data storage.
 

@@ -131,7 +131,7 @@ fun main() {
 
 This Kotlin code snippet demonstrates how to parse a PartiQL query and print its parse tree, using ANTLR-generated `PartiQLLexer` and `PartiQLParser` classes.
 
-## Conclusion
+## Summary
 
 Grammar is essential for defining the syntax of programming and query languages, enabling the accurate parsing and interpretation of code. It underpins the development of compilers and interpreters, ensuring code is syntactically correct and semantically meaningful. Formal notations like Context-Free Grammar (CFG), Backus-Naur Form (BNF), and Extended Backus-Naur Form (EBNF) provide a structured framework for specifying language rules. Tools such as ANTLR utilize these grammars to automate the creation of language processors, streamlining the implementation of languages and allowing developers to focus on advanced features and optimizations.
 
