@@ -139,4 +139,4 @@ Understanding grammar opens avenues to advanced computer science topics like lan
 
 ## References
 
-1. [Essential Steps in Query Language Compilation](https://sahays.github.io/database/2021/11/30/essential-steps-in-query-language-compilation.html)
+1. [Essential Steps in Query Language Compilation](https://sahays.github.io/compiler/2021/11/30/essential-steps-in-query-language-compilation.html)

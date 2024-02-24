@@ -295,3 +295,8 @@ These findings underscore the value of integrating type and schema inference in 
 ## Summary
 
 Integrating static and dynamic type and schema inference techniques advances compiler engineering for query languages like PartiQL, addressing the complexities of modern data management. These methodologies enhance query performance and accuracy by adapting to compile-time and runtime environments and reduce development overhead by automating type and schema-related tasks. The empirical evidence from real-world applications underscores the practical benefits of these approaches, including optimized query execution, reduced error rates, and increased developer productivity. By embracing these inference techniques, compiler technologies can better support today's data's dynamic and diverse nature, ensuring robust, efficient, and flexible data querying capabilities. This evolution in compiler engineering marks a pivotal step toward meeting the challenges of processing semi-structured and unstructured data, paving the way for more intelligent and adaptable data management systems.
+
+## References
+
+1. [PartiQL Website](https://partiql.org)
+2. [What is PartiQL?](https://sahays.github.io/database/2021/09/30/what-is-partiql.html)

@@ -45,7 +45,7 @@ To get started with PartiQL, follow these steps:
 
 ## References
 
-1. [PartiQL website](https://partiql.org)
+1. [PartiQL Website](https://partiql.org)
 2. [The SQL++ Query Language: Configurable, Unifying and Semi-structured](https://arxiv.org/pdf/1405.3631.pdf)
 3. [PartiQL's Kotlin reference implementation](https://github.com/partiql/partiql-lang-kotlin)
 4. [PartiQL's Rust reference implementation](https://github.com/partiql/partiql-lang-rust)
