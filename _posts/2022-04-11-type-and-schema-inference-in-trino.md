@@ -4,7 +4,7 @@ title: "Type and Schema Inference in Trino"
 categories: [compiler, database]
 ---
 
-Trino [1], formerly known as PrestoSQL, implements type inference to manage data types efficiently across its distributed SQL query engine. The engine can query large datasets distributed over one or more data sources, supporting various data formats and storage systems.
+Trino [1], formerly known as PrestoSQL, implements type inference [3] to manage data types efficiently across its distributed SQL query engine. The engine can query large datasets distributed over one or more data sources, supporting various data formats and storage systems.
 
 ## Trino's Type Inference
 
@@ -54,3 +54,4 @@ Trino's type and schema inference capabilities represent a sophisticated approac
 
 1. [Trino Overview](https://trino.io/docs/current/overview.html)
 2. [Trino Data Types](https://trino.io/docs/current/language/types.html)
+3. [Type and Schema Inference](https://sahays.github.io/compiler/database/2022/03/15/type-and-schema-inference.html)
