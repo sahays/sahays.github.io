@@ -4,11 +4,21 @@ title: "A Brief Survey of Type Inference in Trino, Apache Calcite, and Apache Ic
 categories: [analytics]
 ---
 
-Trino, Apache Calcite, and Apache Iceberg are pivotal in modern data management and analytics, each addressing specific aspects of data querying, schema management, and storage with sophisticated type inference mechanisms. We chose these three systems for their distinct yet complementary capabilities. Collectively, they illustrate the evolution of data system design from query execution to schema evolution and data storage. Trino excels in executing queries across diverse data sources, Calcite specializes in query planning and optimization across various storage mechanisms, and Iceberg redefines data storage with a focus on efficiency and scalability. This narrative explores their approaches to type inference [1], identifying common patterns and anti-patterns to underscore their importance in handling complex data ecosystems.
+Trino, Apache Calcite, and Apache Iceberg are pivotal in modern data management and analytics, each addressing specific aspects of data querying, schema management, and storage with sophisticated type inference mechanisms.
+
+We chose these three systems for their distinct yet complementary capabilities. Collectively, they illustrate the evolution of data system design from query execution to schema evolution and data storage. Trino excels in executing queries across diverse data sources, Calcite specializes in query planning and optimization across various storage mechanisms, and Iceberg redefines data storage with a focus on efficiency and scalability.
+
+This narrative explores their approaches to type inference [1], identifying common patterns and anti-patterns to underscore their importance in handling complex data ecosystems.
 
 ## Overview
 
-Type inference addresses several critical challenges in data systems like Trino, Apache Calcite, and Apache Iceberg, making it an indispensable feature for modern data management and analytics. Firstly, it solves the problem of handling the diversity of data types across various data sources, allowing these systems to integrate seamlessly with heterogeneous datasets without requiring manual specifications. Secondly, type inference automates the adaptation to schema evolution, ensuring that changes in data structures do not disrupt query processing or necessitate extensive data migration efforts. This capability significantly reduces the maintenance burden associated with schema updates and enhances the system's ability to manage data dynamically. Moreover, by optimizing query execution through inferred types, these systems can achieve improved performance and efficiency, addressing the challenge of processing large volumes of data swiftly and accurately. In essence, type inference enables more agile, reliable, and scalable data analytics platforms by automating type management, facilitating seamless data integration, and ensuring consistent performance amidst the complexities of modern data landscapes.
+Type inference addresses several critical challenges in data systems like Trino, Apache Calcite, and Apache Iceberg, making it an indispensable feature for modern data management and analytics.
+
+Firstly, it solves the problem of handling the diversity of data types across various data sources, allowing these systems to integrate seamlessly with heterogeneous datasets without requiring manual specifications.
+
+Secondly, type inference automates the adaptation to schema evolution, ensuring that changes in data structures do not disrupt query processing or necessitate extensive data migration efforts. This capability significantly reduces the maintenance burden associated with schema updates and enhances the system's ability to manage data dynamically.
+
+Moreover, by optimizing query execution through inferred types, these systems can achieve improved performance and efficiency, addressing the challenge of processing large volumes of data swiftly and accurately. In essence, type inference enables more agile, reliable, and scalable data analytics platforms by automating type management, facilitating seamless data integration, and ensuring consistent performance amidst the complexities of modern data landscapes.
 
 ## Type Inference Mechanisms
 
@@ -26,7 +36,11 @@ An important anti-pattern these technologies help avoid is **schema rigidity**, 
 
 ## Summary
 
-Trino, Apache Calcite, and Apache Iceberg collectively represent a modern approach to data management, emphasizing flexibility, efficiency, and automation in handling schemas and types across diverse data ecosystems. Trino's dynamic schema and type inference capabilities enable efficient and flexible query execution across heterogeneous data sources. Apache Calcite extends these principles into query optimization, providing a robust framework for type inference and schema management that supports a wide range of data backends. Apache Iceberg complements these capabilities by addressing the challenges of data storage with advanced features for schema evolution and type management that ensure long-term data integrity and compatibility. Together, these systems offer a comprehensive solution to the complexities of modern data architectures, allowing organizations to leverage their data assets fully. By identifying and adopting the common patterns these technologies prescribe and avoiding the anti-patterns they circumvent, data architects and engineers can build more resilient, scalable, and efficient data platforms capable of supporting the evolving needs of business analytics and decision-making.
+Trino, Apache Calcite, and Apache Iceberg collectively represent a modern approach to data management, emphasizing flexibility, efficiency, and automation in handling schemas and types across diverse data ecosystems.
+
+Trino's dynamic schema and type inference capabilities enable efficient and flexible query execution across heterogeneous data sources. Apache Calcite extends these principles into query optimization, providing a robust framework for type inference and schema management that supports a wide range of data backends. Apache Iceberg complements these capabilities by addressing the challenges of data storage with advanced features for schema evolution and type management that ensure long-term data integrity and compatibility.
+
+Together, these systems offer a comprehensive solution to the complexities of modern data architectures, allowing organizations to leverage their data assets fully. By identifying and adopting the common patterns these technologies prescribe and avoiding the anti-patterns they circumvent, data architects and engineers can build more resilient, scalable, and efficient data platforms capable of supporting the evolving needs of business analytics and decision-making.
 
 ## References
 
