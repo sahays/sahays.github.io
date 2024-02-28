@@ -14,7 +14,7 @@ A partial schema refers to a data structure definition that does not comprehensi
 
 Partial schemas emerge in data systems that do not enforce a strict schema upfront, commonly found in NoSQL databases, data lakes, and big data processing frameworks. This flexibility allows for rapid data evolution but introduces data validation, integration, and querying complexity.
 
-## Why is it a problem?
+## Why is it a Problem?
 
 Partial schemas present a complex challenge in data management due to their incomplete nature. They hinder consistent data validation, complicating the enforcement of data integrity and the detection of anomalies. Integration efforts become more intricate as systems must adapt to schema variability, impacting interoperability and increasing the complexity of data pipelines. Additionally, partial schemas can degrade query performance, as additional computations may be necessary to handle dynamic schema variations. Managing the evolution of data schemas without complete definitions requires sophisticated tracking mechanisms, elevating the risk of incompatibilities over time. Furthermore, the lack of comprehensive schemas complicates schema discovery and documentation efforts, posing significant obstacles to data governance and usability.
 
@@ -214,7 +214,7 @@ Incorporating the impact on storage and compute costs, these scenarios further c
 
 Several open-source projects offer robust solutions for managing the challenges of partial schemas and enhancing data integration, processing, and governance. Apache Avro and Apache Parquet provide systems for data serialization and efficient columnar storage, respectively, with solid support for schema evolution. Confluent's Schema Registry manages schema compatibility and evolution, ensuring consistent data exchange. Apache Calcite facilitates flexible query processing and schema discovery. At the same time, Apache Iceberg and Apache Arrow offer advanced table formats and in-memory data processing capabilities, supporting complex nested structures and schema evolution. Together, these tools form a comprehensive ecosystem for addressing the intricacies of partial schemas, enabling organizations to maintain data integrity, performance, and flexibility in dynamic data environments.
 
-## How can PartiQL help?
+## How can PartiQL Help?
 
 PartiQL [1] offers a candidate solution for querying data with partial schemas, addressing the complexities of semi-structured and nested data. Its design fundamentally embraces the variability inherent in modern data formats, distinguishing itself through the nuanced treatment of absent values and a flexible data model. Unlike traditional SQL, PartiQL introduces `MISSING` alongside `NULL` [2], a differentiation that allows for querying within datasets with partial schema. This distinction is crucial for handling partial schemas, as it enables queries to explicitly account for absent fields without conflating them with fields that are present but null.
 
