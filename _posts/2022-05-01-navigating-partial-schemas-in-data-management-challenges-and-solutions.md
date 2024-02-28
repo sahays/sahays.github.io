@@ -8,9 +8,15 @@ categories: [analytics]
 
 This paper discusses the concept of partial schemas within the context of data management, particularly in environments dealing with semi-structured or unstructured data. We explore the reasons leading to partial schemas, the challenges they pose, and potential solutions to manage these challenges effectively. The paper includes practical examples and Python code snippets to illustrate the implementation of these solutions.
 
-## Introduction
+## What is Partial Schema?
 
-Partial schemas emerge in data systems that do not enforce a strict schema upfront, commonly found in NoSQL databases, data lakes, and big data processing frameworks. This flexibility allows for rapid data evolution but introduces data validation, integration, and querying complexity. The introduction sets the stage for a deeper exploration of partial schemas, their implications, and the importance of managing them effectively.
+A partial schema is a data structure definition that only comprehensively describes part of the dataset's schema. Instead, it specifies only a subset of the fields, types, or structures expected in the data. This approach allows for flexibility in handling data where the complete schema is unknown, is too complex, or may vary between data instances. Partial schemas are particularly useful in scenarios involving semi-structured or unstructured data, enabling systems to process and store data without understanding its structure beforehand.
+
+Partial schemas emerge in data systems that do not enforce a strict schema upfront, commonly found in NoSQL databases, data lakes, and big data processing frameworks. This flexibility allows for rapid data evolution but introduces data validation, integration, and querying complexity.
+
+## Why is it a problem?
+
+Partial schemas present a complex challenge in data management due to their incomplete nature. They hinder consistent data validation, complicating the enforcement of data integrity and the detection of anomalies. Integration efforts become more intricate as systems must adapt to schema variability, impacting interoperability and increasing the complexity of data pipelines. Additionally, partial schemas can degrade query performance, as additional computations may be necessary to handle dynamic schema variations. Managing the evolution of data schemas without complete definitions requires sophisticated tracking mechanisms, elevating the risk of incompatibilities over time. Furthermore, the lack of comprehensive schemas complicates schema discovery and documentation efforts, posing significant obstacles to data governance and usability.
 
 ## Reasons Behind Partial Schemas
 
@@ -111,7 +117,9 @@ These examples highlight the multifaceted challenges posed by partial schemas, i
 
 ## Solutions to Manage Partial Schema
 
-Various strategies can help manage the challenges posed by partial schemas effectively, focusing on flexibility, adaptability, and robust data processing practices. Below are solutions accompanied by examples and Python code to illustrate practical implementations.
+Several open-source projects offer robust solutions for managing the challenges of partial schemas and enhancing data integration, processing, and governance. Apache Avro and Apache Parquet provide systems for data serialization and efficient columnar storage, respectively, with solid support for schema evolution. Confluent's Schema Registry manages schema compatibility and evolution, ensuring consistent data exchange. Apache Calcite facilitates flexible query processing and schema discovery. At the same time, Apache Iceberg and Apache Arrow offer advanced table formats and in-memory data processing capabilities, supporting complex nested structures and schema evolution. Together, these tools form a comprehensive ecosystem for addressing the intricacies of partial schemas, enabling organizations to maintain data integrity, performance, and flexibility in dynamic data environments.
+
+Various strategies can help manage the challenges posed by partial schemas effectively, focusing on flexibility, adaptability, and robust data processing practices. Following are some hands-on solutions with examples and Python code.
 
 ### Solution 1: Schema Evolution Management
 
