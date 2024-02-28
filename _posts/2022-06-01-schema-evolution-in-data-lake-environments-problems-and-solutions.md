@@ -124,7 +124,7 @@ Schema evolution within data lakes presents unique challenges, necessitating sop
 
 ### Apache Iceberg
 
-Apache Iceberg is a high-performance table format designed for massive analytic datasets. It provides a foundation for building complex data infrastructures, including data lakes, by offering features to improve schema evolution. Key capabilities include:
+Apache Iceberg [1] is a high-performance table format designed for massive analytic datasets. It provides a foundation for building complex data infrastructures, including data lakes, by offering features to improve schema evolution. Key capabilities include:
 
 - **Schema Evolution Without Downtime:** Iceberg supports adding, renaming, and deleting columns without affecting ongoing queries, ensuring minimal downtime.
 - **Versioning and Compatibility:** Iceberg maintains a snapshot of each schema version, allowing backward and forward compatibility. This feature enables data engineers to seamlessly access and query data across different versions.
@@ -132,7 +132,7 @@ Apache Iceberg is a high-performance table format designed for massive analytic 
 
 ### Delta Lake
 
-Delta Lake is an open-source storage layer that brings ACID transactions to Apache Spark and big data workloads. It addresses several schema evolution challenges, including:
+Delta Lake [3] is an open-source storage layer that brings ACID transactions to Apache Spark and big data workloads. It addresses several schema evolution challenges, including:
 
 - **Schema Enforcement and Evolution:** Delta Lake provides schema enforcement mechanisms to prevent incompatible data from corrupting the dataset. It also allows for safe schema evolution with explicit commands or by inferring changes during data ingestion.
 - **Scalable Metadata Handling:** By maintaining a transaction log that records every change made to the data lake, Delta Lake efficiently manages metadata, even at scale, ensuring consistent data views.
@@ -140,7 +140,7 @@ Delta Lake is an open-source storage layer that brings ACID transactions to Apac
 
 ### Apache Hudi
 
-Apache Hudi is an open-source data management framework that simplifies incremental data processing and pipeline development. Hudi's approach to schema evolution includes the following:
+Apache Hudi [2] is an open-source data management framework that simplifies incremental data processing and pipeline development. Hudi's approach to schema evolution includes the following:
 
 - **Schema Versioning and Evolution:** Hudi supports schema changes during data ingestion, allowing fields to be added or modified as data evolves. This capability ensures datasets remain queryable and consistent, even as schemas change.
 - **Complex Data Structures:** Hudi handles complex nested data structures, making it suitable for evolving schemas in data lakes that store semi-structured or unstructured data.
@@ -349,7 +349,7 @@ The implementation of schema evolution strategies within data lake environments 
 **Solution:** By adopting Apache Hudi, the organization evolved its schema to include new clinical trial data. Hudi's support for complex data types and schema evolution allowed the organization to make necessary changes with minimal impact on existing datasets. Automated conflict resolution and rollback capabilities ensured data integrity throughout the process.
 **Outcome:** The healthcare research organization successfully integrated new clinical trial data into their analysis, enhancing the breadth and depth of their research capabilities. Apache Hudi facilitated a smooth transition to the new schema, ensuring ongoing research projects were not disrupted.
 
-## Conclusion
+## Summary
 
 Schema evolution in data lakes represents a critical facet of modern data management, enabling organizations to adapt their data infrastructure to changing business requirements, regulatory environments, and technological advancements. As illustrated through exploring open-source projects like Apache Iceberg, Delta Lake, and Apache Hudi, as well as practical implementations and case studies, effective schema evolution practices are essential for maintaining data lakes' integrity, usability, and performance.
 
@@ -358,3 +358,9 @@ The challenges of schema evolution -- from managing heterogeneous data and ensur
 The case studies further demonstrate the applicability and benefits of these strategies across various industries, highlighting how organizations can leverage schema evolution to enhance data analysis capabilities, ensure regulatory compliance, and foster innovation. The success stories of the e-commerce platform, financial services firm, and healthcare research organization provide tangible evidence of the value that well-managed schema evolution brings to data-driven enterprises.
 
 In conclusion, schema evolution is an indispensable component of data lake management, requiring careful consideration, strategic planning, and adopting robust tools and frameworks. By embracing the principles and practices discussed in this paper, organizations can ensure their data lakes remain flexible, scalable, and aligned with evolving business objectives. As data grows in volume, variety, and velocity, the ability to evolve data schemas efficiently will remain a cornerstone of competitive advantage and operational excellence in the data-driven landscape.
+
+## References
+
+1. [Apache Iceberg](https://iceberg.apache.org/docs/latest/)
+2. [Apache Hudi](https://hudi.apache.org/docs/overview)
+3. [Delta Lake](https://www.databricks.com/wp-content/uploads/2020/08/p975-armbrust.pdf)
