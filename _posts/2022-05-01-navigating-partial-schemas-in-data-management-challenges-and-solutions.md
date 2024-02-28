@@ -10,7 +10,7 @@ This paper discusses the concept of partial schemas within the context of data m
 
 ## What is Partial Schema?
 
-A partial schema is a data structure definition that only comprehensively describes part of the dataset's schema. Instead, it specifies only a subset of the fields, types, or structures expected in the data. This approach allows for flexibility in handling data where the complete schema is unknown, is too complex, or may vary between data instances. Partial schemas are particularly useful in scenarios involving semi-structured or unstructured data, enabling systems to process and store data without understanding its structure beforehand.
+A partial schema refers to a data structure definition that does not comprehensively describe the entire dataset's schema. Instead, it specifies only a subset of the fields, types, or structure expected in the data. This approach allows for flexibility in handling data where the full schema is not known in advance, is too complex, or may vary between data instances. Partial schemas are particularly useful in scenarios involving semi-structured or unstructured data, enabling systems to process and store data without needing a complete understanding of its structure beforehand.
 
 Partial schemas emerge in data systems that do not enforce a strict schema upfront, commonly found in NoSQL databases, data lakes, and big data processing frameworks. This flexibility allows for rapid data evolution but introduces data validation, integration, and querying complexity.
 
@@ -91,15 +91,15 @@ Partial schemas present significant data management and processing challenges, p
 
 ### Challenge 1: Data Integration from Multiple Sources
 
-**Example:** Consider a scenario where a data analytics team needs to integrate customer data from two different systems: an online sales platform and a brick-and-mortar sales system. The online platform includes detailed customer profiles, including email and purchase_history, while the brick-and-mortar system records only customer_id and purchase_amount.
+**Example:** Consider a scenario where a data analytics team needs to integrate customer data from two different systems: an online sales platform and a brick-and-mortar sales system. The online platform includes detailed customer profiles, including `email` and `purchase_history`, while the brick-and-mortar system records only `customer_id` and `purchase_amount`.
 
 **Implications:** Integrating these two data sources poses a challenge due to the partial overlap in the schema. Analysis that requires complete customer profiles, such as personalized marketing campaigns, becomes complicated. The team must devise strategies to handle missing information, potentially leading to inaccurate or incomplete insights.
 
 ### Challenge 2: Schema Evolution Over Time
 
-**Example:** A streaming service records viewer activity, initially capturing user_id, view_date, and content_id. Over time, the service updates the schema to include device_type and watch_duration to understand viewing habits better.
+**Example:** A streaming service records viewer activity, initially capturing `user_id`, `view_date`, and `content_id`. Over time, the service updates the schema to include `device_type` and `watch_duration` to understand viewing habits better.
 
-**Implications:** Analyses conducted on historical data become challenging due to the absence of device_type and watch_duration in earlier records. This partial schema complicates trend analysis over time, as any insights into viewing habits by device type or engagement level are inherently incomplete for the period before the schema update.
+**Implications:** Analyses conducted on historical data become challenging due to the absence of `device_type` and `watch_duration` in earlier records. This partial schema complicates trend analysis over time, as any insights into viewing habits by device type or engagement level are inherently incomplete for the period before the schema update.
 
 ### Challenge 3: Query Complexity and Performance
 
@@ -109,15 +109,13 @@ Partial schemas present significant data management and processing challenges, p
 
 ### Challenge 4: Data Consistency and Quality
 
-**Example:** An e-commerce platform merges user data from its original site and an acquired competitor. The competitor's user data includes a loyalty_points field, which does not exist in the original platform's data.
+**Example:** An e-commerce platform merges user data from its original site and an acquired competitor. The competitor's user data includes a `loyalty_points` field, which does not exist in the original platform's data.
 
-**Implications:** This leads to inconsistency in user records, where some have loyalty_points and others do not. Calculating metrics like average loyalty points or segmenting users based on loyalty becomes problematic, affecting the quality of business insights and potentially leading to misguided decisions.
+**Implications:** This leads to inconsistency in user records, where some have `loyalty_points` and others do not. Calculating metrics like average loyalty points or segmenting users based on loyalty becomes problematic, affecting the quality of business insights and potentially leading to misguided decisions.
 
 These examples highlight the multifaceted challenges posed by partial schemas, impacting data integration, analysis, and the overall quality of data-driven decisions. Addressing these challenges requires careful planning, including adopting flexible data models, implementing schema evolution strategies, and utilizing data processing techniques that accommodate schema variability.
 
 ## Solutions to Manage Partial Schema
-
-Several open-source projects offer robust solutions for managing the challenges of partial schemas and enhancing data integration, processing, and governance. Apache Avro and Apache Parquet provide systems for data serialization and efficient columnar storage, respectively, with solid support for schema evolution. Confluent's Schema Registry manages schema compatibility and evolution, ensuring consistent data exchange. Apache Calcite facilitates flexible query processing and schema discovery. At the same time, Apache Iceberg and Apache Arrow offer advanced table formats and in-memory data processing capabilities, supporting complex nested structures and schema evolution. Together, these tools form a comprehensive ecosystem for addressing the intricacies of partial schemas, enabling organizations to maintain data integrity, performance, and flexibility in dynamic data environments.
 
 Various strategies can help manage the challenges posed by partial schemas effectively, focusing on flexibility, adaptability, and robust data processing practices. Following are some hands-on solutions with examples and Python code.
 
@@ -212,6 +210,23 @@ While the strategies outlined offer robust solutions for managing partial schema
 
 Incorporating the impact on storage and compute costs, these scenarios further complicate the resource management aspect. Implementing schema evolution or dynamic schema adaptation requires additional compute resources to handle schema merging, validation, and conversion processes. It increases storage requirements to maintain multiple schema versions or metadata for schema resolution. As data volumes grow and schema changes become more frequent, the overhead associated with these processes can significantly escalate, impacting operational costs and system performance. For example, maintaining backward or forward compatibility through schema versioning necessitates additional storage to keep historical schema versions alongside the data, increasing the storage footprint. Similarly, dynamic schema handling involves runtime schema resolution, which can lead to higher compute utilization, especially in processing large datasets or complex schema transformations. These cost implications must be carefully weighed against the benefits of flexibility and adaptability in schema management, particularly in environments where resource constraints are critical.
 
+## Available Open-Source Projects
+
+Several open-source projects offer robust solutions for managing the challenges of partial schemas and enhancing data integration, processing, and governance. Apache Avro and Apache Parquet provide systems for data serialization and efficient columnar storage, respectively, with solid support for schema evolution. Confluent's Schema Registry manages schema compatibility and evolution, ensuring consistent data exchange. Apache Calcite facilitates flexible query processing and schema discovery. At the same time, Apache Iceberg and Apache Arrow offer advanced table formats and in-memory data processing capabilities, supporting complex nested structures and schema evolution. Together, these tools form a comprehensive ecosystem for addressing the intricacies of partial schemas, enabling organizations to maintain data integrity, performance, and flexibility in dynamic data environments.
+
+## How can PartiQL help?
+
+PartiQL offers a candidate solution for querying data with partial schemas, addressing the complexities of semi-structured and nested data. Its design fundamentally embraces the variability inherent in modern data formats, distinguishing itself through the nuanced treatment of absent values and a flexible data model. Unlike traditional SQL, PartiQL introduces `MISSING` alongside `NULL`, a differentiation that allows for querying within datasets with partial schema. This distinction is crucial for handling partial schemas, as it enables queries to explicitly account for absent fields without conflating them with fields that are present but null.
+
+The PartiQL data model's compatibility with arrays, bags, and scalar values, enriched by its integration with the Ion type system, further enhances its capability to manage semi-structured data. This flexibility allows for seamless data querying regardless of its conformity to a rigid schema, making PartiQL particularly adept at navigating the challenges posed by data evolution and integration from heterogeneous sources.
+
+By leveraging PartiQL, developers and data analysts can effectively construct expressive queries that navigate and manipulate data with partial schemas. Operations on datasets that include nested and optional fields become straightforward, mitigating the issues traditionally associated with schema variability. This capability ensures that data stored in non-traditional formats or undergoing schema evolution remains accessible and usable, providing a robust toolset for the dynamic requirements of modern data processing and analysis.
+
 ## Summary
 
 In conclusion, managing partial schemas presents significant challenges and opportunities for modern data architectures. While the flexibility to accommodate schema evolution and variability is essential in dealing with the dynamic nature of big data, it introduces complexities in data processing, integrity, and system design. The solutions discussed, including schema evolution, schema-on-read strategies, and schema registries, offer pathways to address these challenges, yet they still need limitations. Key among these is the potential impact on storage and compute costs and the feasibility of implementation in rigid or legacy systems. It becomes clear that while strategies for managing partial schemas can significantly enhance data agility and system scalability, they necessitate carefully considering the trade-offs involved. Organizations must assess their needs, data characteristics, and system capabilities to determine the most effective approach, balancing flexibility with cost, performance, and data integrity requirements. As data ecosystems evolve, managing partial schemas will remain critical for innovation and optimization, requiring ongoing adaptation and thoughtful strategy development.
+
+## References
+
+1. [What is PartiQL?](https://sahays.github.io/database/2021/09/30/what-is-partiql.html)
+2. [PartiQL specification](https://partiql.org/assets/PartiQL-Specification.pdf)
