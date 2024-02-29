@@ -42,6 +42,8 @@ The analytical needs of an organization are never static; they change to reflect
 
 While necessary, schema evolution in data lakes presents a host of challenges that complicate data management and utilization. These problems stem from the inherent characteristics of data lakes, such as their scale, diversity of data, and the flexibility they offer. Addressing these issues is crucial for organizations to ensure their data lakes remain effective and efficient repositories for analytics and decision-making.
 
+![Challenges](../assets/images/schema-evo-challenges.png)
+
 ### Schema Drift and Inconsistency
 
 One of the primary challenges in data lake schema evolution is schema drift, where the structure of incoming data changes over time without explicit governance. This drift can lead to data format and quality inconsistencies, making it difficult to perform reliable analytics. Schema drift often occurs in environments with multiple data sources contributing to the lake, each evolving independently. Managing this drift requires sophisticated schema evolution strategies to adapt to changes while maintaining data integrity dynamically.
@@ -157,6 +159,8 @@ Apache Hudi [2] is an open-source data management framework that simplifies incr
 ## Solutions Offered by Apache Iceberg
 
 Apache Iceberg, an open-source table format, addresses many inherent challenges of schema evolution in data lakes. By offering a comprehensive set of features designed to manage and mitigate issues related to schema changes, Iceberg ensures that data lakes remain robust, scalable, and adaptable over time. This section outlines the key solutions provided by Apache Iceberg to facilitate efficient schema evolution.
+
+![Iceberg solutions](../assets/images/schema-evo-iceberg.png)
 
 ### Schema Evolution Without Downtime
 
