@@ -289,6 +289,8 @@ By specifying a snapshot ID, users can access historical data, facilitating audi
 
 Schema evolution in data lakes encompasses the processes and methodologies for adapting the schema of stored data as requirements evolve. Despite the availability of sophisticated tools and frameworks designed to streamline these changes, several challenges persist. These challenges stem from the inherent complexities of data lakes, including the variety and volume of stored data, the need for backward and forward compatibility, and the overarching goal of minimizing the impact on data availability and query performance.
 
+![Data Lake Challenges](/assets/images/schema-evo-data-lake-challenges.png)
+
 ### Complexity of Managing Heterogeneous Data
 
 Data lakes typically store many data types, from structured to semi-structured and unstructured, originating from disparate sources. Each data type may require a unique approach to schema evolution, complicating the management process. Ensuring consistency and integrity across such a diverse dataset becomes a significant challenge, necessitating advanced tooling and expertise.
