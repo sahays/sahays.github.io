@@ -140,8 +140,6 @@ Apache Hudi [2] is an open-source data management framework that simplifies incr
 
 Apache Iceberg, an open-source table format, addresses many inherent challenges of schema evolution in data lakes. By offering a comprehensive set of features designed to manage and mitigate issues related to schema changes, Iceberg ensures that data lakes remain robust, scalable, and adaptable over time. This section outlines the key solutions provided by Apache Iceberg to facilitate efficient schema evolution.
 
-![Iceberg solutions](/assets/images/schema-evo-iceberg.png)
-
 ### Schema Evolution Without Downtime
 
 Apache Iceberg allows for schema modifications such as adding new columns, renaming existing ones or deleting unnecessary columns without interrupting the data lake's operations. This capability is critical for businesses that rely on continuous data processing and cannot afford significant downtime.
@@ -181,6 +179,8 @@ Iceberg provides time travel capabilities, allowing users to query data as it ex
 ## Practical Implementations and Code Examples in Schema Evolution with Apache Iceberg
 
 Apache Iceberg provides robust mechanisms for schema evolution, allowing data engineers to implement changes efficiently while ensuring data integrity and compatibility. This section demonstrates practical implementations and code examples of schema evolution tasks using Apache Iceberg, highlighting its flexibility and power in managing complex data lake environments.
+
+![Iceberg solutions](/assets/images/schema-evo-iceberg.png)
 
 ### Adding a New Column
 
@@ -268,6 +268,8 @@ By specifying a snapshot ID, users can access historical data, facilitating audi
 ## Best Practices for Schema Evolution in Data Lakes
 
 Effectively managing schema evolution in data lakes is crucial for maintaining data integrity, ensuring data quality, and supporting the flexible use of data assets. Given the challenges associated with schema evolution, adhering to best practices can significantly mitigate risks and enhance the agility and resilience of data lake environments. This section outlines key best practices for managing schema evolution in data lakes.
+
+![Best practices](/assets/images/schema-evo-best-practices.png)
 
 ### Comprehensive Planning and Documentation
 
