@@ -56,8 +56,6 @@ return_zero:                         ; Label for returning 0
 }
 ```
 
-### Explanation of the Constituents
-
 - **Function Definition**: The `define` keyword starts the definition of a function named `add_positive` that returns a 32-bit integer (`i32`) and takes two 32-bit integer parameters (`i32 %a, i32 %b`). The function name is `@add_positive`.
 
 - **Labels**: The `entry:`, `return_sum:`, and `return_zero:` are labels marking positions in the function. Labels identify blocks of instructions, facilitating control flow within the function.
