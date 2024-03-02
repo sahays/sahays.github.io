@@ -42,7 +42,7 @@ The primary goal of integrating PartiQL support into PostgreSQL through the "pgp
 
 3. **Enhanced Analytical Capabilities**: Improve PostgreSQL's analytical capabilities by allowing direct queries on nested structures and arrays, thereby unlocking new insights from previously complex data to analyze directly in PostgreSQL. This objective aims to support more complex analytical queries and operations within the database.
 
-4. **Performance Optimization**: Ensure that the introduction of PartiQL queries does not compromise PostgreSQL's performance. The extension will focus on optimizing query execution, minimizing overhead, and leveraging PostgreSQL's existing performance features to handle PartiQL queries efficiently.
+4. **Minimum latency**: Ensure that the introduction of PartiQL queries does not add latency to PostgreSQL's performance. The extension will focus minimizing overhead, and leveraging PostgreSQL's existing performance features to handle PartiQL queries.
 
 5. **Seamless Integration**: Design the "pgpartiql" extension to integrate seamlessly with PostgreSQL's existing features and ecosystem. This extension includes compatibility with PostgreSQL's security model, transaction management, and existing tooling, ensuring users can adopt PartiQL without significant changes to their current workflows.
 
@@ -66,7 +66,7 @@ The "pgpartiql" extension will integrate PartiQL's comprehensive querying capabi
 
 ### Design Principles
 
-- **Performance Optimization**: Ensuring that the translation and execution of PartiQL queries do not adversely affect PostgreSQL's performance. Strategies include leveraging existing PostgreSQL optimization mechanisms and introducing specific optimizations for handling PartiQL queries.
+- **Minimum latency**: Ensuring that the translation and execution of PartiQL queries do not adversely affect PostgreSQL's performance. Strategies include leveraging existing PostgreSQL optimization mechanisms and introducing specific optimizations for handling PartiQL queries.
 
 - **Seamless Integration**: The extension will integrate smoothly with PostgreSQL, requiring minimal configuration changes and allowing users to employ PartiQL queries alongside traditional SQL queries without disruption.
 
