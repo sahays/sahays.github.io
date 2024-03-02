@@ -28,12 +28,12 @@ The design principles of LLVM Intermediate Representation (IR) reflect a careful
 
 ![LLVM design](/assets/images/llvm-design.png)
 
-1. Static Single Assignment (SSA) Form: LLVM IR employs the SSA form, where each variable is assigned exactly once and defined before use. This characteristic simplifies the optimization and analysis phases by making data dependencies explicit, thereby enabling more aggressive and effective optimizations. SSA form reduces the complexity of many compiler algorithms, facilitating code quality and performance improvements.
-2. Type System and Strong Typing: LLVM IR includes a rich type system that supports first-class types, such as integers of arbitrary bit-width, floating-point numbers, structures, arrays, and function pointers. This robust typing system ensures type safety and enables precise type-based optimizations, contributing to efficient machine code generation. The type system is designed to be both expressive and minimal, allowing for accurately representing high-level language constructs while avoiding unnecessary complexity.
-3. Modularity and Extensibility: The modular nature of LLVM IR and its supporting infrastructure allows for easy extension and adaptation to support new programming languages, target architectures, and optimizations. LLVM's design encourages the development of reusable components, such as passes for analysis and transformation, that can be combined in flexible ways to build custom compiler pipelines tailored to specific requirements.
-4. Target Independence: LLVM IR is independent of any specific hardware architecture, enabling code written in LLVM IR to be compiled to any target supported by the LLVM framework. This target independence is central to LLVM's utility as a cross-platform compiler infrastructure, facilitating the development of applications and tools that can run on various hardware platforms without modification.
-5. Optimization-Friendly: The structure and features of LLVM IR are specifically designed to enable a wide range of optimizations, from basic ones like constant folding and dead code elimination to more complex analyses and transformations such as loop unrolling and interprocedural optimization. LLVM's pass-based architecture allows for flexible scheduling of optimization passes, enabling fine-tuned control over the compilation process to achieve the best possible performance.
-6. End-to-End Design: While LLVM IR serves as an intermediate stage in the compilation process, the overall design of LLVM encompasses the entire compilation pipeline, from front-end parsing and IR generation to backend code generation and optimization. This end-to-end consideration ensures that LLVM IR integrates smoothly with other components of the LLVM ecosystem, supporting efficient translation of high-level language constructs to optimized machine code.
+1. **Static Single Assignment (SSA) Form:** LLVM IR employs the SSA form, where each variable is assigned exactly once and defined before use. This characteristic simplifies the optimization and analysis phases by making data dependencies explicit, thereby enabling more aggressive and effective optimizations. SSA form reduces the complexity of many compiler algorithms, facilitating code quality and performance improvements.
+2. **Type System and Strong Typing:** LLVM IR includes a rich type system that supports first-class types, such as integers of arbitrary bit-width, floating-point numbers, structures, arrays, and function pointers. This robust typing system ensures type safety and enables precise type-based optimizations, contributing to efficient machine code generation. The type system is designed to be both expressive and minimal, allowing for accurately representing high-level language constructs while avoiding unnecessary complexity.
+3. **Modularity and Extensibility:** The modular nature of LLVM IR and its supporting infrastructure allows for easy extension and adaptation to support new programming languages, target architectures, and optimizations. LLVM's design encourages the development of reusable components, such as passes for analysis and transformation, that can be combined in flexible ways to build custom compiler pipelines tailored to specific requirements.
+4. **Target Independence:** LLVM IR is independent of any specific hardware architecture, enabling code written in LLVM IR to be compiled to any target supported by the LLVM framework. This target independence is central to LLVM's utility as a cross-platform compiler infrastructure, facilitating the development of applications and tools that can run on various hardware platforms without modification.
+5. **Optimization-Friendly:** The structure and features of LLVM IR are specifically designed to enable a wide range of optimizations, from basic ones like constant folding and dead code elimination to more complex analyses and transformations such as loop unrolling and interprocedural optimization. LLVM's pass-based architecture allows for flexible scheduling of optimization passes, enabling fine-tuned control over the compilation process to achieve the best possible performance.
+6. **End-to-End Design:** While LLVM IR serves as an intermediate stage in the compilation process, the overall design of LLVM encompasses the entire compilation pipeline, from front-end parsing and IR generation to backend code generation and optimization. This end-to-end consideration ensures that LLVM IR integrates smoothly with other components of the LLVM ecosystem, supporting efficient translation of high-level language constructs to optimized machine code.
 
 These design principles underpin the success and widespread adoption of LLVM IR in various domains, from system software and application development to specialized areas like high-performance computing and embedded systems. LLVM IR plays a pivotal role in modern software development and compiler research by providing a powerful, flexible, and efficient platform for compiler construction.
 
@@ -254,49 +254,6 @@ Evaluating the performance of LLVM IR optimizations involves considering the tra
 
 In summary, metrics and performance evaluation are essential for validating the effectiveness of LLVM IR optimizations, guiding the development of new optimizations, and ensuring that LLVM continues to meet the evolving performance requirements of diverse applications and platforms.
 
-## Performance Evaluation
-
-Performance evaluation in the context of LLVM Intermediate Representation (IR) involves a systematic approach to measuring and analyzing the impact of LLVM's optimizations on the execution of compiled programs. This process is critical for compiler developers and users, providing quantitative feedback on the efficiency, speed, and resource usage of applications compiled with LLVM. Performance evaluation helps identify improvement areas for LLVM's optimization algorithms and guides decisions on when and how to apply specific optimizations for maximum benefit.
-
-### Establishing a Baseline
-
-The first step in performance evaluation is to establish a baseline by compiling and running the target application without any optimization passes enabled. This baseline provides a reference point for subsequent comparisons, allowing for the assessment of optimization effectiveness. Metrics such as execution time, memory usage, and instruction count are recorded at this stage.
-
-### Applying Optimizations
-
-LLVM offers a range of optimization levels, from `-O0` (no optimization) to `-O3` (maximum optimization), along with specialized options like `-Os` (optimize for size) and `-Ofast` (fastest possible execution speed, potentially at the expense of accuracy). By incrementally applying these optimization levels, developers can observe the relative impact of different optimizations on the performance metrics established in the baseline.
-
-### Measuring Performance Metrics
-
-Key performance metrics include:
-
-- **Execution Time**: The total runtime of the application is often the primary indicator of optimization effectiveness.
-- **Memory Usage**: The peak memory consumption during execution is essential for resource-constrained environments.
-- **Instruction Count**: The total number of machine instructions executed, which helps gauge code efficiency.
-- **Cache Misses and Branch Mispredictions**: Lower-level metrics obtained via hardware counters or profiling tools indicate how well the optimized code interacts with the hardware.
-
-### Tools and Techniques for Evaluation
-
-Performance evaluation employs various tools and techniques, such as:
-
-- **Profiling Tools**: Tools like `perf` on Linux, `Instruments` on macOS, and similar utilities on other platforms help identify hotspots and bottlenecks in the application.
-- **Benchmark Suites**: Standardized benchmarks provide a consistent and comparative framework for evaluating performance across different systems and compilers.
-- **Custom Test Cases**: Specific scenarios designed to test the performance implications of particular optimizations or to replicate real-world application behavior.
-
-### Analyzing Results
-
-Performance evaluation involves the collection of metrics and their careful analysis. This analysis looks for significant improvements or regressions in performance, correlating these changes with the specific optimizations applied. Such an analysis might reveal that certain optimizations are highly effective for particular applications or algorithms, while others may have negligible or even negative impacts depending on the context.
-
-### Challenges in Performance Evaluation
-
-Several challenges arise in performance evaluation:
-
-- **Variability**: Hardware differences, input data variability, and environmental factors can introduce noise into performance measurements, requiring multiple runs and statistical analysis to ensure accuracy.
-- **Trade-offs**: Optimizations often involve trade-offs between execution speed and memory usage. Decisions on which optimizations to apply may depend on the specific constraints and priorities of the application.
-- **Platform-Specific Behavior**: Optimizations may have different impacts depending on the target hardware architecture, making evaluating performance across multiple platforms necessary to understand an optimization's benefits fully.
-
-Performance evaluation is an iterative and ongoing process in developing and using LLVM. It ensures that LLVM's optimizations remain relevant and effective in improving the performance of various applications across various platforms and architectures. Through meticulous performance evaluation, LLVM continues to evolve, addressing modern computing environments' complex and changing needs.
-
 ## Future Directions for LLVM IR
 
 The evolving landscape of computing technologies and the continuous quest for improved performance, portability, and efficiency in software development shape the future directions for LLVM Intermediate Representation (IR). As LLVM IR stands at the core of the LLVM project, driving innovations in compiler design and optimization, several vital areas emerge as focal points for its future development.
@@ -341,9 +298,7 @@ LLVM Intermediate Representation is a testament to the power of open collaborati
 
 ## References
 
-1. **LLVM Official Documentation and Publications**: The primary source of detailed and technical information about LLVM IR, its design principles, features, and optimization techniques.
-
-   - [LLVM Project](https://llvm.org/docs/)
+1. **LLVM Official Documentation and Publications**: The primary source of detailed and technical information about LLVM IR, its design principles, features, and optimization techniques. [LLVM Project](https://llvm.org/docs/)
 
 2. **Academic and Research Papers**: Scholarly articles and conference papers that discuss the development, optimization techniques, and applications of LLVM IR in various computing domains.
 
